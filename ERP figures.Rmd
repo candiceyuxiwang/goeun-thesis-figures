@@ -17,15 +17,37 @@ When you click the **Knit** button a document will be generated that includes bo
 
 ```{r}
 library(erpR)
+library(R.matlab)
+library(dplyr)
 # imported data: rows = electrodes, columns = time points, entries = signal amplitudes
+n28 <- readMat("n28_ave_ref_blc_dif_ave.mat")
+# angry averted P7 channel 58
+ang.avt <- n28$Angry.Averted.Average.multiple.subjects %>% data.frame()
+names(ang.avt) <- c(1:275)
+P7.ang.avt <- c(ang.avt[58,]) %>% as.numeric()
+time <- c(1:275) %>% as.numeric() %>% time*4/1000
+type.ang <- c(rep("ANG.AVT", 275))
+P7.ang.avt.frame <- data.frame(time, P7.ang.avt, type.ang)
+names(P7.ang.avt.frame) <- c("time", "value", "type")
+# neutral averted P7 channel 58
+neu.avt <- n28$Neutral.Averted.Average.multiple.subjects %>% data.frame()
+names(neu.avt) <- c(1:275)
+P7.neu.avt <- c(neu.avt[58,]) %>% as.numeric()
+type.neu <- c(rep("NEU.AVT", 275))
+P7.neu.avt.frame <- data.frame(time, P7.neu.avt, type.neu)
+names(P7.neu.avt.frame) <- c("time", "value", "type")
+# P7 channel 58 with both conditions
+P7 <- rbind(P7.ang.avt.frame, P7.neu.avt.frame)
 ```
 
 ## Including Plots
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r, echo=FALSE}
+library(ggplot2)
+ggplot(P7, aes(y = value, x = time)) + geom_line(aes(color=type))+
+  scale_color_manual(values=c('#CC0000','#000099'))
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
