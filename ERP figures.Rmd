@@ -96,7 +96,7 @@ Cz <- rbind(Cz.ang.avt.frame, Cz.neu.avt.frame)
 
 ## Plots
 
-```{r, echo=FALSE, warning=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(ggplot2)
 library(ggthemes)
 # P7 channel 58 plot
