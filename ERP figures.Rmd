@@ -11,9 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r}
 library(erpR)
@@ -21,33 +18,119 @@ library(R.matlab)
 library(dplyr)
 # imported data: rows = electrodes, columns = time points, entries = signal amplitudes
 n28 <- readMat("n28_ave_ref_blc_dif_ave.mat")
+
 # angry averted P7 channel 58
 ang.avt <- n28$Angry.Averted.Average.multiple.subjects %>% data.frame()
 names(ang.avt) <- c(1:275)
 P7.ang.avt <- c(ang.avt[58,]) %>% as.numeric()
-time <- c(1:275) %>% as.numeric() %>% time*4/1000
+time <- c(1:275) %>% as.numeric() %>% time*4
+time <- time-100
 type.ang <- c(rep("ANG.AVT", 275))
 P7.ang.avt.frame <- data.frame(time, P7.ang.avt, type.ang)
-names(P7.ang.avt.frame) <- c("time", "value", "type")
+names(P7.ang.avt.frame) <- c("ms", "µV", "condition")
 # neutral averted P7 channel 58
 neu.avt <- n28$Neutral.Averted.Average.multiple.subjects %>% data.frame()
 names(neu.avt) <- c(1:275)
 P7.neu.avt <- c(neu.avt[58,]) %>% as.numeric()
 type.neu <- c(rep("NEU.AVT", 275))
 P7.neu.avt.frame <- data.frame(time, P7.neu.avt, type.neu)
-names(P7.neu.avt.frame) <- c("time", "value", "type")
+names(P7.neu.avt.frame) <- c("ms", "µV", "condition")
 # P7 channel 58 with both conditions
 P7 <- rbind(P7.ang.avt.frame, P7.neu.avt.frame)
+
+# angry averted P8 channel 96
+P8.ang.avt <- c(ang.avt[96,]) %>% as.numeric()
+P8.ang.avt.frame <- data.frame(time, P8.ang.avt, type.ang)
+names(P8.ang.avt.frame) <- c("ms", "µV", "condition")
+# neutral averted P8 channel 96
+P8.neu.avt <- c(neu.avt[96,]) %>% as.numeric()
+P8.neu.avt.frame <- data.frame(time, P8.neu.avt, type.neu)
+names(P8.neu.avt.frame) <- c("ms", "µV", "condition")
+# P8 channel 96 with both conditions
+P8 <- rbind(P8.ang.avt.frame, P8.neu.avt.frame)
+
+# angry averted PO7 channel 65
+PO7.ang.avt <- c(ang.avt[65,]) %>% as.numeric()
+PO7.ang.avt.frame <- data.frame(time, PO7.ang.avt, type.ang)
+names(PO7.ang.avt.frame) <- c("ms", "µV", "condition")
+# neutral averted PO7 channel 65
+PO7.neu.avt <- c(neu.avt[65,]) %>% as.numeric()
+PO7.neu.avt.frame <- data.frame(time, PO7.neu.avt, type.neu)
+names(PO7.neu.avt.frame) <- c("ms", "µV", "condition")
+# PO7 channel 96 with both conditions
+PO7 <- rbind(PO7.ang.avt.frame, PO7.neu.avt.frame)
+
+# angry averted PO8 channel 90
+PO8.ang.avt <- c(ang.avt[90,]) %>% as.numeric()
+PO8.ang.avt.frame <- data.frame(time, PO8.ang.avt, type.ang)
+names(PO8.ang.avt.frame) <- c("ms", "µV", "condition")
+# neutral averted PO8 channel 90
+PO8.neu.avt <- c(neu.avt[90,]) %>% as.numeric()
+PO8.neu.avt.frame <- data.frame(time, PO8.neu.avt, type.neu)
+names(PO8.neu.avt.frame) <- c("ms", "µV", "condition")
+# PO8 channel 90 with both conditions
+PO8 <- rbind(PO8.ang.avt.frame, PO8.neu.avt.frame)
+
+# angry averted Pz channel 62
+Pz.ang.avt <- c(ang.avt[62,]) %>% as.numeric()
+Pz.ang.avt.frame <- data.frame(time, Pz.ang.avt, type.ang)
+names(Pz.ang.avt.frame) <- c("ms", "µV", "condition")
+# neutral averted Pz channel 62
+Pz.neu.avt <- c(neu.avt[62,]) %>% as.numeric()
+Pz.neu.avt.frame <- data.frame(time, Pz.neu.avt, type.neu)
+names(Pz.neu.avt.frame) <- c("ms", "µV", "condition")
+# Pz channel 62 with both conditions
+Pz <- rbind(Pz.ang.avt.frame, Pz.neu.avt.frame)
+
+# angry averted Cz channel 129????
+Cz.ang.avt <- c(ang.avt[129,]) %>% as.numeric()
+Cz.ang.avt.frame <- data.frame(time, Cz.ang.avt, type.ang)
+names(Cz.ang.avt.frame) <- c("ms", "µV", "condition")
+# neutral averted Cz channel 129
+Cz.neu.avt <- c(neu.avt[129,]) %>% as.numeric()
+Cz.neu.avt.frame <- data.frame(time, Cz.neu.avt, type.neu)
+names(Cz.neu.avt.frame) <- c("ms", "µV", "condition")
+# Cz channel 129 with both conditions
+Cz <- rbind(Cz.ang.avt.frame, Cz.neu.avt.frame)
 ```
 
-## Including Plots
+## Plots
 
-You can also embed plots, for example:
-
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 library(ggplot2)
-ggplot(P7, aes(y = value, x = time)) + geom_line(aes(color=type))+
-  scale_color_manual(values=c('#CC0000','#000099'))
-```
+# P7 channel 58 plot
+P7.plot <- ggplot(P7, aes(y = µV, x = ms)) + geom_line(aes(color=condition))+
+  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="P7")+
+  scale_x_continuous("ms", c(seq(-100, 1000, 100)))+scale_y_continuous("µV", c(seq(-6.75, 6.75, 1))) +ylim(-6.75, 6.75)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))
+P7.plot 
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# P8 channel 96 plot
+P8.plot <- ggplot(P8, aes(y = µV, x = ms)) + geom_line(aes(color=condition))+
+  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="P8")+
+  scale_x_continuous("ms", c(seq(-100, 1000, 100)))+scale_y_continuous("µV", c(seq(-6.75, 6.75, 1)))+ylim(-6.75, 6.75) +theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))
+P8.plot
+
+# PO7 channel 65 plot
+PO7.plot <- ggplot(PO7, aes(y = µV, x = ms)) + geom_line(aes(color=condition))+
+  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="PO7")+
+  scale_x_continuous("ms", c(seq(-100, 1000, 100)))+scale_y_continuous("µV", c(seq(-6.75, 6.75, 1))) +ylim(-6.75, 6.75)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))
+PO7.plot 
+
+# PO8 channel 90 plot
+PO8.plot <- ggplot(PO8, aes(y = µV, x = ms)) + geom_line(aes(color=condition))+
+  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="PO8")+
+  scale_x_continuous("ms", c(seq(-100, 1000, 100)))+scale_y_continuous("µV", c(seq(-6.75, 6.75, 1)))+ylim(-6.75, 6.75) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))
+PO8.plot 
+
+# Pz channel 62 plot
+Pz.plot <- ggplot(Pz, aes(y = µV, x = ms)) + geom_line(aes(color=condition))+
+  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="Pz")+
+  scale_x_continuous("ms", c(seq(-100, 1000, 100)))+scale_y_continuous("µV", c(seq(-6.75, 6.75, 1)))+ylim(-6.75, 6.75) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))
+Pz.plot 
+
+# Cz channel 129 plot
+Cz.plot <- ggplot(Cz, aes(y = µV, x = ms)) + geom_line(aes(color=condition))+
+  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="Cz")+
+  scale_x_continuous("ms", c(seq(-100, 1000, 100)))+scale_y_continuous("µV", c(seq(-6.75, 6.75, 1)))+ylim(-6.75, 6.75) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"))
+Cz.plot
+```
