@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 
 
-```{r}
+```{r,echo=FALSE, warning=FALSE, message=FALSE}
 library(erpR)
 library(R.matlab)
 library(dplyr)
@@ -99,56 +99,68 @@ Cz <- rbind(Cz.ang.avt.frame, Cz.neu.avt.frame)
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(ggplot2)
 library(ggthemes)
+# make a theme
+theme_goeun <- function () { 
+    theme_bw() %+replace% 
+        theme(
+            axis.ticks = element_line(colour = "white"), 
+            axis.ticks.length = unit(.25, "cm"),
+            panel.background = element_rect(fill = "white", colour = NA), 
+            panel.border = element_blank(), 
+            axis.line = element_line(colour = "white"), 
+            axis.text = element_blank(), 
+            panel.grid.major = element_blank(), 
+            panel.grid.minor = element_blank(),
+            strip.background = element_rect(fill = "white", colour = "white", 
+                                    size = 0.2),
+            plot.title = element_text(hjust = 1, size = 15)
+        )
+}
+
 # P7 channel 58 plot
 P7.plot <- ggplot(P7, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="P7")+
-  scale_x_continuous("time_ms", c(seq(-100, 1000, 200)))+scale_y_continuous("amplitude_µV", c(seq(-6.75, 6.75, 1))) +ylim(-6.75, 6.75)+ theme_hc()
+  scale_color_manual(values=c('#CC0000','#000099'))+ scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0),labels = c(rep("-",7)))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
 P7.plot 
 
 # P8 channel 96 plot
 P8.plot <- ggplot(P8, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="P8")+
-  scale_x_continuous("time_ms", c(seq(-100, 1000, 200)))+scale_y_continuous("amplitude_µV", c(seq(-6.75, 6.75, 1)))+ylim(-6.75, 6.75) +theme_hc()
+  scale_color_manual(values=c('#CC0000','#000099'))+ scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
 P8.plot
 
 # PO7 channel 65 plot
 PO7.plot <- ggplot(PO7, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="PO7")+
-  scale_x_continuous("time_ms", c(seq(-100, 1000, 200)))+scale_y_continuous("amplitude_µV", c(seq(-6.75, 6.75, 1))) +ylim(-6.75, 6.75)+ theme_hc()
+  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
 PO7.plot 
 
 # PO8 channel 90 plot
 PO8.plot <- ggplot(PO8, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="PO8")+
-  scale_x_continuous("time_ms", c(seq(-100, 1000, 200)))+scale_y_continuous("amplitude_µV", c(seq(-6.75, 6.75, 1)))+ylim(-6.75, 6.75) + theme_hc()
+  scale_color_manual(values=c('#CC0000','#000099')) +scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
 PO8.plot 
 
 # Pz channel 62 plot
 Pz.plot <- ggplot(Pz, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="Pz")+
-  scale_x_continuous("time_ms", c(seq(-100, 1000, 200)))+scale_y_continuous("amplitude_µV", c(seq(-6.75, 6.75, 1)))+ylim(-6.75, 6.75) + theme_hc()
+  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
 Pz.plot 
 
 # Cz channel 129 plot
 Cz.plot <- ggplot(Cz, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+ labs(title="Cz")+
-  scale_x_continuous("time_ms", c(seq(-100, 1000, 200)))+scale_y_continuous("amplitude_µV", c(seq(-6.75, 6.75, 1)))+ylim(-6.75, 6.75) + theme_hc()
+  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0) 
 Cz.plot
 ```
 
 ##Topoplots
 
-```{r}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(erpR)
 # electrodes in columns, time points in rows. different from previous data frames
 # erpobj.ang.avt <- n28$Angry.Averted.Average.multiple.subjects %>% t() %>% data.frame()
 # names(erpobj.ang.avt) <- c(1:129)
-# topoplot(erpobj.ang.avt, startmsec=-100, endmsec=1000, 180, 
-# 180,  exclude = NULL, elec.coord=NULL, projection="orthographic", 
-# palette.col="jet", palette.steps=10, return.coord = FALSE, zlim=NULL, 
-# interpolation = "cubicspline", extrap = TRUE, interp.points = 500, 
-# return.notfound=FALSE, mask = TRUE,  contour=TRUE, x.rev=FALSE, 
-# draw.elec.pos=TRUE,  draw.nose=FALSE, draw.elec.lab=TRUE, 
+# topoplot(erpobj.ang.avt, startmsec=-100, endmsec=1000, 180,
+# 180,  exclude = NULL, elec.coord=NULL, projection="orthographic",
+# palette.col="jet", palette.steps=10, return.coord = FALSE, zlim=NULL,
+# interpolation = "cubicspline", extrap = TRUE, interp.points = 500,
+# return.notfound=FALSE, mask = TRUE,  contour=TRUE, x.rev=FALSE,
+# draw.elec.pos=TRUE,  draw.nose=FALSE, draw.elec.lab=TRUE,
 # elec.lab.adj=c(0.5, NA), head.col="black", head.lwd=1)
 # need to name the electrodes correctly...
 
