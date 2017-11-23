@@ -108,7 +108,7 @@ theme_goeun <- function () {
             panel.background = element_rect(fill = "white", colour = NA), 
             panel.border = element_blank(), 
             axis.line = element_line(colour = "white"), 
-            axis.text = element_blank(), 
+            axis.text = element_text(), 
             panel.grid.major = element_blank(), 
             panel.grid.minor = element_blank(),
             strip.background = element_rect(fill = "white", colour = "white", 
@@ -119,33 +119,33 @@ theme_goeun <- function () {
 
 # P7 channel 58 plot
 P7.plot <- ggplot(P7, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+ scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0),labels = c(rep("-",7)))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
-P7.plot 
+  scale_color_manual(values=c('#CC0000','#000099'))+ scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 1100)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
+P7.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=100,xend=100,y=-.2,yend=.2))+ geom_segment(aes(x=300,xend=300,y=-.2,yend=.2))+ geom_segment(aes(x=500,xend=500,y=-.2,yend=.2))+ geom_segment(aes(x=700,xend=700,y=-.2,yend=.2))+ geom_segment(aes(x=900,xend=900,y=-.2,yend=.2))
 
 # P8 channel 96 plot
 P8.plot <- ggplot(P8, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+ scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
-P8.plot
+  scale_color_manual(values=c('#CC0000','#000099'))+ scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 1100)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P8", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
+P8.plot+ geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=100,xend=100,y=-.2,yend=.2))+ geom_segment(aes(x=300,xend=300,y=-.2,yend=.2))+ geom_segment(aes(x=500,xend=500,y=-.2,yend=.2))+ geom_segment(aes(x=700,xend=700,y=-.2,yend=.2))+ geom_segment(aes(x=900,xend=900,y=-.2,yend=.2))
 
 # PO7 channel 65 plot
 PO7.plot <- ggplot(PO7, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
-PO7.plot 
+  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 1100)),limits = c(-100, 1000), expand = c(0,0))+labs(title="PO7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
+PO7.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=100,xend=100,y=-.2,yend=.2))+ geom_segment(aes(x=300,xend=300,y=-.2,yend=.2))+ geom_segment(aes(x=500,xend=500,y=-.2,yend=.2))+ geom_segment(aes(x=700,xend=700,y=-.2,yend=.2))+ geom_segment(aes(x=900,xend=900,y=-.2,yend=.2))
 
 # PO8 channel 90 plot
 PO8.plot <- ggplot(PO8, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099')) +scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
-PO8.plot 
+  scale_color_manual(values=c('#CC0000','#000099')) +scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 1100)),limits = c(-100, 1000), expand = c(0,0))+labs(title="PO8", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
+PO8.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=100,xend=100,y=-.2,yend=.2))+ geom_segment(aes(x=300,xend=300,y=-.2,yend=.2))+ geom_segment(aes(x=500,xend=500,y=-.2,yend=.2))+ geom_segment(aes(x=700,xend=700,y=-.2,yend=.2))+ geom_segment(aes(x=900,xend=900,y=-.2,yend=.2))
 
 # Pz channel 62 plot
 Pz.plot <- ggplot(Pz, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
-Pz.plot 
+  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 1100)),limits = c(-100, 1000), expand = c(0,0))+labs(title="Pz", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
+Pz.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=100,xend=100,y=-.2,yend=.2))+ geom_segment(aes(x=300,xend=300,y=-.2,yend=.2))+ geom_segment(aes(x=500,xend=500,y=-.2,yend=.2))+ geom_segment(aes(x=700,xend=700,y=-.2,yend=.2))+ geom_segment(aes(x=900,xend=900,y=-.2,yend=.2))
 
 # Cz channel 129 plot
 Cz.plot <- ggplot(Cz, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.75, 6.75, 2)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 200)),limits = c(-100, 1000), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0) 
-Cz.plot
+  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 1000, 1100)),limits = c(-100, 1000), expand = c(0,0))+labs(title="Cz", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0) 
+Cz.plot+ geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=100,xend=100,y=-.2,yend=.2))+ geom_segment(aes(x=300,xend=300,y=-.2,yend=.2))+ geom_segment(aes(x=500,xend=500,y=-.2,yend=.2))+ geom_segment(aes(x=700,xend=700,y=-.2,yend=.2))+ geom_segment(aes(x=900,xend=900,y=-.2,yend=.2))
 ```
 
 ##Topoplots
