@@ -21,79 +21,123 @@ n28 <- readMat("n28_ave_ref_blc_dif_ave.mat")
 
 # angry averted P7 channel 58
 ang.avt <- n28$Angry.Averted.Average.multiple.subjects %>% data.frame()
+ang.dir <- n28$Angry.Direct.Average.multiple.subjects %>% data.frame()
 names(ang.avt) <- c(1:275)
-ang.avt <- ang.avt %>% select(1:200)
+names(ang.dir) <- c(1:275)
+ang.avt <- ang.avt %>% select(1:175)
+ang.dir <- ang.dir %>% select(1:175)
 P7.ang.avt <- c(ang.avt[58,]) %>% as.numeric()
-time <- c(1:200) %>% as.numeric() %>% time*4
+P7.ang.dir <- c(ang.dir[58,]) %>% as.numeric()
+time <- c(1:175) %>% as.numeric() %>% time*4
 time <- time-100
-type.ang <- c(rep("ANG.AVT", 200))
+type.ang <- c(rep("ANG.AVT", 175))
+type.ang.dir <- c(rep("ANG.DIR", 175))
 P7.ang.avt.frame <- data.frame(time, P7.ang.avt, type.ang)
+P7.ang.dir.frame <- data.frame(time, P7.ang.dir, type.ang.dir)
 names(P7.ang.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(P7.ang.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # neutral averted P7 channel 58
 neu.avt <- n28$Neutral.Averted.Average.multiple.subjects %>% data.frame()
+neu.dir <- n28$Neutral.Direct.Average.multiple.subjects %>% data.frame()
 names(neu.avt) <- c(1:275)
-neu.avt <- neu.avt %>% select(1:200)
+names(neu.dir) <- c(1:275)
+neu.avt <- neu.avt %>% select(1:175)
+neu.dir <- neu.dir %>% select(1:175)
 P7.neu.avt <- c(neu.avt[58,]) %>% as.numeric()
-type.neu <- c(rep("NEU.AVT", 200))
+P7.neu.dir <- c(neu.dir[58,]) %>% as.numeric()
+type.neu <- c(rep("NEU.AVT", 175))
+type.neu.dir <- c(rep("NEU.DIR", 175))
 P7.neu.avt.frame <- data.frame(time, P7.neu.avt, type.neu)
+P7.neu.dir.frame <- data.frame(time, P7.neu.dir, type.neu.dir)
 names(P7.neu.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(P7.neu.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # P7 channel 58 with both conditions
-P7 <- rbind(P7.ang.avt.frame, P7.neu.avt.frame)
+P7 <- rbind(P7.ang.avt.frame, P7.neu.avt.frame, P7.ang.dir.frame, P7.neu.dir.frame)
 
 # angry averted P8 channel 96
 P8.ang.avt <- c(ang.avt[96,]) %>% as.numeric()
+P8.ang.dir <- c(ang.dir[96,]) %>% as.numeric()
 P8.ang.avt.frame <- data.frame(time, P8.ang.avt, type.ang)
+P8.ang.dir.frame <- data.frame(time, P8.ang.dir, type.ang.dir)
 names(P8.ang.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(P8.ang.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # neutral averted P8 channel 96
 P8.neu.avt <- c(neu.avt[96,]) %>% as.numeric()
+P8.neu.dir <- c(neu.dir[96,]) %>% as.numeric()
 P8.neu.avt.frame <- data.frame(time, P8.neu.avt, type.neu)
+P8.neu.dir.frame <- data.frame(time, P8.neu.dir, type.neu.dir)
 names(P8.neu.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(P8.neu.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # P8 channel 96 with both conditions
-P8 <- rbind(P8.ang.avt.frame, P8.neu.avt.frame)
+P8 <- rbind(P8.ang.avt.frame, P8.neu.avt.frame, P8.ang.dir.frame, P8.neu.dir.frame)
 
 # angry averted PO7 channel 65
 PO7.ang.avt <- c(ang.avt[65,]) %>% as.numeric()
+PO7.ang.dir <- c(ang.dir[65,]) %>% as.numeric()
 PO7.ang.avt.frame <- data.frame(time, PO7.ang.avt, type.ang)
+PO7.ang.dir.frame <- data.frame(time, PO7.ang.dir, type.ang.dir)
 names(PO7.ang.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(PO7.ang.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # neutral averted PO7 channel 65
 PO7.neu.avt <- c(neu.avt[65,]) %>% as.numeric()
+PO7.neu.dir <- c(neu.dir[65,]) %>% as.numeric()
 PO7.neu.avt.frame <- data.frame(time, PO7.neu.avt, type.neu)
+PO7.neu.dir.frame <- data.frame(time, PO7.neu.dir, type.neu.dir)
 names(PO7.neu.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(PO7.neu.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # PO7 channel 96 with both conditions
-PO7 <- rbind(PO7.ang.avt.frame, PO7.neu.avt.frame)
+PO7 <- rbind(PO7.ang.avt.frame, PO7.neu.avt.frame, PO7.ang.dir.frame, PO7.neu.dir.frame)
 
 # angry averted PO8 channel 90
 PO8.ang.avt <- c(ang.avt[90,]) %>% as.numeric()
+PO8.ang.dir <- c(ang.dir[90,]) %>% as.numeric()
 PO8.ang.avt.frame <- data.frame(time, PO8.ang.avt, type.ang)
+PO8.ang.dir.frame <- data.frame(time, PO8.ang.dir, type.ang.dir)
 names(PO8.ang.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(PO8.ang.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # neutral averted PO8 channel 90
 PO8.neu.avt <- c(neu.avt[90,]) %>% as.numeric()
+PO8.neu.dir <- c(neu.dir[90,]) %>% as.numeric()
 PO8.neu.avt.frame <- data.frame(time, PO8.neu.avt, type.neu)
+PO8.neu.dir.frame <- data.frame(time, PO8.neu.dir, type.neu.dir)
 names(PO8.neu.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(PO8.neu.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # PO8 channel 90 with both conditions
-PO8 <- rbind(PO8.ang.avt.frame, PO8.neu.avt.frame)
+PO8 <- rbind(PO8.ang.avt.frame, PO8.neu.avt.frame, PO8.ang.dir.frame, PO8.neu.dir.frame)
 
 # angry averted Pz channel 62
 Pz.ang.avt <- c(ang.avt[62,]) %>% as.numeric()
+Pz.ang.dir <- c(ang.dir[62,]) %>% as.numeric()
 Pz.ang.avt.frame <- data.frame(time, Pz.ang.avt, type.ang)
+Pz.ang.dir.frame <- data.frame(time, Pz.ang.dir, type.ang.dir)
 names(Pz.ang.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(Pz.ang.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # neutral averted Pz channel 62
 Pz.neu.avt <- c(neu.avt[62,]) %>% as.numeric()
+Pz.neu.dir <- c(neu.dir[62,]) %>% as.numeric()
 Pz.neu.avt.frame <- data.frame(time, Pz.neu.avt, type.neu)
+Pz.neu.dir.frame <- data.frame(time, Pz.neu.dir, type.neu.dir)
 names(Pz.neu.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(Pz.neu.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # Pz channel 62 with both conditions
-Pz <- rbind(Pz.ang.avt.frame, Pz.neu.avt.frame)
+Pz <- rbind(Pz.ang.avt.frame, Pz.neu.avt.frame, Pz.ang.dir.frame, Pz.neu.dir.frame)
 
 # angry averted Cz channel 129????
 Cz.ang.avt <- c(ang.avt[129,]) %>% as.numeric()
+Cz.ang.dir <- c(ang.dir[129,]) %>% as.numeric()
 Cz.ang.avt.frame <- data.frame(time, Cz.ang.avt, type.ang)
+Cz.ang.dir.frame <- data.frame(time, Cz.ang.dir, type.ang.dir)
 names(Cz.ang.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(Cz.ang.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # neutral averted Cz channel 129
 Cz.neu.avt <- c(neu.avt[129,]) %>% as.numeric()
+Cz.neu.dir <- c(neu.dir[129,]) %>% as.numeric()
 Cz.neu.avt.frame <- data.frame(time, Cz.neu.avt, type.neu)
+Cz.neu.dir.frame <- data.frame(time, Cz.neu.dir, type.neu.dir)
 names(Cz.neu.avt.frame) <- c("time_ms", "amplitude_µV", "condition")
+names(Cz.neu.dir.frame) <- c("time_ms", "amplitude_µV", "condition")
 # Cz channel 129 with both conditions
-Cz <- rbind(Cz.ang.avt.frame, Cz.neu.avt.frame)
+Cz <- rbind(Cz.ang.avt.frame, Cz.neu.avt.frame, Cz.ang.dir.frame, Cz.neu.dir.frame)
 ```
 
 ## Plots
@@ -120,34 +164,34 @@ theme_goeun <- function () {
 }
 
 # P7 channel 58 plot
-P7.plot <- ggplot(P7, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+ scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 700, 800)),limits = c(-100, 700), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
-P7.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))+ geom_segment(aes(x=600,xend=600,y=-.2,yend=.2))
+P7.plot <- ggplot(P7, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition,linetype=condition))+
+  scale_color_manual(values=c('#CC0000','#000099','#CC0000','#000099'))+scale_linetype_manual(values=c("solid","solid", "dotted", "dotted"))+ scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 500, 600)),limits = c(-100, 500), expand = c(0,0))+labs(title="P7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
+P7.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))
 
 # P8 channel 96 plot
-P8.plot <- ggplot(P8, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+ scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 700, 800)),limits = c(-100, 700), expand = c(0,0))+labs(title="P8", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
-P8.plot+ geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))+ geom_segment(aes(x=600,xend=600,y=-.2,yend=.2))
+P8.plot <- ggplot(P8, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition,linetype=condition))+
+  scale_color_manual(values=c('#CC0000','#000099','#CC0000','#000099'))+scale_linetype_manual(values=c("solid","solid", "dotted", "dotted"))+ scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 500, 600)),limits = c(-100, 500), expand = c(0,0))+labs(title="P8", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
+P8.plot+ geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))
 
 # PO7 channel 65 plot
-PO7.plot <- ggplot(PO7, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 700, 800)),limits = c(-100, 700), expand = c(0,0))+labs(title="PO7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
-PO7.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))+ geom_segment(aes(x=600,xend=600,y=-.2,yend=.2))
+PO7.plot <- ggplot(PO7, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition,linetype=condition))+
+  scale_color_manual(values=c('#CC0000','#000099','#CC0000','#000099'))+scale_linetype_manual(values=c("solid","solid", "dotted", "dotted"))+scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 500, 600)),limits = c(-100, 600), expand = c(0,0))+labs(title="PO7", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
+PO7.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))
 
 # PO8 channel 90 plot
-PO8.plot <- ggplot(PO8, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099')) +scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 700, 800)),limits = c(-100, 700), expand = c(0,0))+labs(title="PO8", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
-PO8.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))+ geom_segment(aes(x=600,xend=600,y=-.2,yend=.2))
+PO8.plot <- ggplot(PO8, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition,linetype=condition))+
+  scale_color_manual(values=c('#CC0000','#000099','#CC0000','#000099'))+scale_linetype_manual(values=c("solid","solid", "dotted", "dotted"))+scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 700, 800)),limits = c(-100, 700), expand = c(0,0))+labs(title="PO8", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
+PO8.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))
 
 # Pz channel 62 plot
-Pz.plot <- ggplot(Pz, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 700, 800)),limits = c(-100, 700), expand = c(0,0))+labs(title="Pz", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
-Pz.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))+ geom_segment(aes(x=600,xend=600,y=-.2,yend=.2))
+Pz.plot <- ggplot(Pz, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition,linetype=condition))+
+  scale_color_manual(values=c('#CC0000','#000099','#CC0000','#000099'))+scale_linetype_manual(values=c("solid","solid", "dotted", "dotted"))+scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 700, 800)),limits = c(-100, 700), expand = c(0,0))+labs(title="Pz", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0)
+Pz.plot + geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))
 
 # Cz channel 129 plot
-Cz.plot <- ggplot(Cz, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition))+
-  scale_color_manual(values=c('#CC0000','#000099'))+scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 700, 800)),limits = c(-100, 700), expand = c(0,0))+labs(title="Cz", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0) 
-Cz.plot+ geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))+ geom_segment(aes(x=600,xend=600,y=-.2,yend=.2))
+Cz.plot <- ggplot(Cz, aes(y = amplitude_µV, x = time_ms)) + geom_line(aes(color=condition,linetype=condition))+
+  scale_color_manual(values=c('#CC0000','#000099','#CC0000','#000099'))+scale_linetype_manual(values=c("solid","solid", "dotted", "dotted"))+scale_y_continuous(breaks = c(seq(-6.5, 6.5, 6.5)), limits =c(-6.75, 6.75), expand = c(0,0))+scale_x_continuous(breaks =c(seq(-100, 700, 800)),limits = c(-100, 700), expand = c(0,0))+labs(title="Cz", x="Time(ms)", y="Amplitude(µV)")+theme_goeun()+ geom_vline(xintercept=0)+geom_hline(yintercept=0) 
+Cz.plot+ geom_segment(aes(x=-10,xend=10,y=-6,yend=-6)) + geom_segment(aes(x=-10,xend=10,y=-4,yend=-4)) + geom_segment(aes(x=-10,xend=10,y=-2,yend=-2)) + geom_segment(aes(x=-10,xend=10,y=2,yend=2)) + geom_segment(aes(x=-10,xend=10,y=4,yend=4)) + geom_segment(aes(x=-10,xend=10,y=6,yend=6)) + geom_segment(aes(x=200,xend=200,y=-.2,yend=.2))+ geom_segment(aes(x=400,xend=400,y=-.2,yend=.2))
 ```
 
 ##Topoplots
